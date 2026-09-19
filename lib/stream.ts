@@ -48,11 +48,26 @@ export function ndjsonStream(run: (send: (e: StreamEvent) => void) => Promise<vo
   const encoder = new TextEncoder();
   return new ReadableStream({
     async start(controller) {
-      const send = (e: StreamEvent) => controller.enqueue(encoder.encode(JSON.stringify(e) + "\n"));
+      let open = true;
+      // The browser may disconnect mid-run; keep the pipeline (and sandbox cleanup) going regardless.
+      const send = (e: StreamEvent) => {
+        if (!open) return;
+        try {
+          controller.enqueue(encoder.encode(JSON.stringify(e) + "\n"));
+        } catch {
+          open = false;
+        }
+      };
       try {
         await run(send);
       } finally {
-        controller.close();
+        if (open) {
+          try {
+            controller.close();
+          } catch {
+            // already closed by a disconnect
+          }
+        }
       }
     },
   });

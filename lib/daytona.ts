@@ -133,13 +133,21 @@ export async function runBacktestInSandbox(
     });
     return { result: parsed.data, sandboxId };
   } finally {
-    emit({ stage: "destroying_sandbox", sandboxId });
+    // Progress events must never prevent deletion.
+    const safeEmit = (e: SandboxEvent) => {
+      try {
+        emit(e);
+      } catch {
+        // ignore
+      }
+    };
+    safeEmit({ stage: "destroying_sandbox", sandboxId });
     try {
       await sandbox.delete(60, true);
-      emit({ stage: "sandbox_destroyed", sandboxId });
+      safeEmit({ stage: "sandbox_destroyed", sandboxId });
     } catch (e) {
       console.error("[daytona] cleanup failed for", sandboxId, e);
-      emit({ stage: "sandbox_cleanup_failed", sandboxId });
+      safeEmit({ stage: "sandbox_cleanup_failed", sandboxId });
     }
   }
 }
