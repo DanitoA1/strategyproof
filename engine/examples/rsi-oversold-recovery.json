@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "name": "RSI Oversold Recovery",
+  "market": {
+    "symbol": "EURUSD",
+    "timeframe": "15m"
+  },
+  "direction": "long",
+  "entry": {
+    "mode": "all",
+    "conditions": [
+      {
+        "left": {
+          "kind": "indicator",
+          "indicator": "rsi",
+          "period": 14,
+          "source": "close"
+        },
+        "operator": "cross_above",
+        "right": {
+          "kind": "constant",
+          "value": 30
+        }
+      }
+    ]
+  },
+  "risk": {
+    "stopLossPips": 20,
+    "takeProfitPips": 40,
+    "riskPerTradePct": 1
+  },
+  "costs": {
+    "spreadPips": 0.8
+  }
+}

@@ -6,12 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "smoke:daytona": "tsx --env-file=.env.local scripts/daytona-smoke.mts",
+    "smoke:kimi": "tsx --env-file=.env.local scripts/kimi-smoke.mts",
+    "smoke:nosana": "tsx --env-file=.env.local scripts/nosana-smoke.mts",
+    "sandboxes": "tsx --env-file=.env.local scripts/list-sandboxes.mts"
   },
   "dependencies": {
+    "@daytona/sdk": "^0.214.0",
     "next": "16.3.5",
+    "openai": "^7.18.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -21,7 +29,9 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.23.13",
+    "typescript": "^5",
+    "vitest": "^5.0.1"
   },
   "packageManager": "pnpm@12.4.2"
 }

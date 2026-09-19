@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "name": "RSI Overbought Fade",
+  "market": {
+    "symbol": "EURUSD",
+    "timeframe": "15m"
+  },
+  "direction": "short",
+  "entry": {
+    "mode": "all",
+    "conditions": [
+      {
+        "left": {
+          "kind": "indicator",
+          "indicator": "rsi",
+          "period": 14,
+          "source": "close"
+        },
+        "operator": "cross_below",
+        "right": {
+          "kind": "constant",
+          "value": 70
+        }
+      }
+    ]
+  },
+  "risk": {
+    "stopLossPips": 20,
+    "takeProfitPips": 30,
+    "riskPerTradePct": 1
+  },
+  "costs": {
+    "spreadPips": 0.8
+  }
+}

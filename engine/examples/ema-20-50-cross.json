@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "name": "EMA 20/50 Bullish Cross",
+  "market": {
+    "symbol": "EURUSD",
+    "timeframe": "15m"
+  },
+  "direction": "long",
+  "entry": {
+    "mode": "all",
+    "conditions": [
+      {
+        "left": {
+          "kind": "indicator",
+          "indicator": "ema",
+          "period": 20,
+          "source": "close"
+        },
+        "operator": "cross_above",
+        "right": {
+          "kind": "indicator",
+          "indicator": "ema",
+          "period": 50,
+          "source": "close"
+        }
+      }
+    ]
+  },
+  "risk": {
+    "stopLossPips": 25,
+    "takeProfitPips": 50,
+    "riskPerTradePct": 1
+  },
+  "costs": {
+    "spreadPips": 0.8
+  }
+}
