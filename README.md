@@ -2,7 +2,7 @@
 
 **Don't trust a trading strategy. Test it.**
 
-Built at Daytona HackSprint Seoul (September 19, 2026) as a standalone FXToolkit prototype.
+Built at Daytona HackSprint Seoul (September 19, 2026) as a standalone FXToolkit prototype. Slides: [docs/StrategyProof_Deck.pdf](docs/StrategyProof_Deck.pdf).
 
 StrategyProof asks a simple question:
 
