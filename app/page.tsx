@@ -5,6 +5,7 @@ import { ExecutionTimeline } from "@/components/ExecutionTimeline";
 import { Header } from "@/components/Header";
 import { ResultsDashboard } from "@/components/ResultsDashboard";
 import { EXAMPLES, StrategyInput } from "@/components/StrategyInput";
+import { VideoImport } from "@/components/VideoImport";
 import { readNdjson, type CompletedEvent, type ErrorEvent, type StatusEvent } from "@/lib/stream";
 
 export default function Home() {
@@ -61,6 +62,7 @@ export default function Home() {
       </section>
 
       <div className="space-y-5">
+        <VideoImport onExtracted={setIdea} disabled={running} />
         <StrategyInput value={idea} onChange={setIdea} onSubmit={run} running={running} />
         {started && <ExecutionTimeline events={events} error={error} running={running} />}
         {result && <ResultsDashboard result={result} />}

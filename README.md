@@ -53,6 +53,14 @@ anything runs. The sandbox then runs our own deterministic, standard-library-onl
 
 Streaming endpoint: [`app/api/backtest/route.ts`](app/api/backtest/route.ts) (`POST /api/backtest`, `application/x-ndjson`).
 
+## Video import (optional)
+
+Paste a YouTube link and Gemini (`google/gemini-3.8-flash` via OpenRouter, [`lib/video.ts`](lib/video.ts),
+`POST /api/extract-video`) watches the video and writes the strategy it teaches as plain English into the
+strategy box. It records any market or timeframe changes it made and lists what the video never states (for example a stop loss)
+instead of inventing it. You review or edit the text, then the normal Kimi → Daytona → Nosana run takes over.
+Only YouTube URLs are accepted.
+
 ## Backtest engine
 
 [`engine/backtest.py`](engine/backtest.py) uses only the Python standard library, so there's nothing to install inside the sandbox.
